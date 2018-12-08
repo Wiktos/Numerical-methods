@@ -39,7 +39,7 @@ for i = 1:iter
             x2 = x1;
             x1 = temp;
         end
-        %Przygotowujemy siê do kolejnej iteracji
+        
         x2 = x3;
 
 end
