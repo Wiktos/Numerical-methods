@@ -20,9 +20,6 @@ while (a < 20)
     x1 = x1 + h * (k1(1) + 2 * k1(2) + 2 * k1(3) + k1(4)) / 6;
     x2 = x2 + h * (k2(1) + 2 * k2(2) + 2 * k2(3) + k2(4)) / 6;
     
-    newx1 = x1;
-    newx2 = x2;
-    
     %first half-step
     h = 0.5 * h;
     x1 = tempx1;
@@ -34,14 +31,13 @@ while (a < 20)
     x2 = x2 + h * (k2(1) + 2 * k2(2) + 2 * k2(3) + k2(4)) / 6;
     
     %second half-step
+    [k1, k2] = computeKs(fun1, fun2, x1, x2, h);
+    
     tempx12 = x1 + h * (k1(1) + 2 * k1(2) + 2 * k1(3) + k1(4)) / 6;
     tempx22 = x2 + h * (k2(1) + 2 * k2(2) + 2 * k2(3) + k2(4)) / 6;
     
     errors(i + 1, 1) = (tempx12 - x1) / 15;
     errors(i + 1, 2) = (tempx22 - x2) / 15;
-    
-    x1 = newx1;
-    x2 = newx2;
     
     h = 2 * h;
     
